@@ -1,2 +1,49 @@
-<h1>Chatroom#index</h1>
-<p>Find me in app/views/chatroom/index.html.erb</p>
+<%= render 'layouts/errors', obj: @message %>
+<div class="ui equal width padded grid">
+  <div class="stretched row">
+    <div class="column">
+      <div class="ui segment">
+        <h2 class="ui header">
+          <i class="coffee icon"></i>
+          <div class="content">
+            Say something!
+            <div class="sub header">Type your message below and hit enter</div>
+          </div>
+        </h2>
+        <div class="ui fluid card">
+          <div class="content">
+            <div class="header">Messages</div>
+          </div>
+          <div class="content chatbox" id="messages">
+            <div class="ui feed" id="message-container">
+              <%= render @messages %>
+            </div>
+          </div>
+          <div class="extra content">
+          <%= form_with(model: @message, remote: true, html: {class: "ui reply form", role: "form"}) do |f| %>
+            <div class="ui fluid large action input">
+                <%= f.text_field :body, placeholder: "Type your message here..." %>
+                <%= f.button '<i class="bordered inverted edit icon"></i>'.html_safe %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="four wide column">
+    <div class="ui segment">
+      <h2 class="ui header">
+          <i class="users icon"></i>
+          <div class="content">
+            Users online
+            <div class="sub header">Following users are available in this chat</div>
+          </div>
+        </h2>
+      <div class="ui fluid inverted vertical icon menu">
+        <%= render @users %>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

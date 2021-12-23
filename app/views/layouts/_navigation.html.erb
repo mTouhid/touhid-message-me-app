@@ -1,0 +1,19 @@
+<div class="ui inverted segment">
+  <div class="ui huge secondary inverted pointing menu">
+    <a class="active item">
+      Chatroom
+    </a>
+    <div class="right menu">
+      <% if logged_in? %>
+      <div class="item"><%= current_user.username %></div>
+      <% end %>
+      <div class="item">
+        <% if logged_in? %>
+        <%= link_to "Log out", logout_path, class: "ui primary button", method: :delete %>
+        <% else %>
+        <%= link_to "Sign up", signup_path, class: "ui primary button" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
